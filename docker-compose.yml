@@ -1,7 +1,9 @@
-version: "3.9"
-
 x-airflow-common: &airflow-common
-  image: ${AIRFLOW_IMAGE_NAME}
+  build:
+    context: .
+    args:
+      AIRFLOW_VERSION: "2.8.1"
+  image: ${AIRFLOW_IMAGE_NAME:-maestro-airflow:2.8.1}
   env_file:
     - .env
   environment:
@@ -41,9 +43,6 @@ services:
       - |
         airflow db migrate
         airflow users create --username ${AIRFLOW_USER}  --password ${AIRFLOW_PASSWORD} --firstname ${AIRFLOW_FIRST_NAME} --lastname User  --role Admin  --email ${AIRFLOW_EMAIL}
-        "
-    networks:
-      - data-lake-net"
     restart: "no"
 
   airflow-webserver:

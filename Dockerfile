@@ -1,16 +1,10 @@
 ARG AIRFLOW_VERSION=3.1.6
 
+ARG AIRFLOW_VERSION=3.1.6
+
 FROM apache/airflow:${AIRFLOW_VERSION}
 
 USER root
-
-# Dependências do sistema (use apenas o necessário)
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-       vim \
-    && apt-get autoremove -yqq --purge \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
 
 # Instalar dependências Python
 COPY requirements.txt /requirements.txt
