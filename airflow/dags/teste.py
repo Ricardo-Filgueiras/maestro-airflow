@@ -1,3 +1,4 @@
+""" 
 from minio import Minio
 import os
 
@@ -36,3 +37,5 @@ def test_minio_connection():
 
 if __name__ == "__main__":
     test_minio_connection()
+
+"""
